@@ -1,4 +1,4 @@
-module validate2zh
+module validate2zh/v1
 
 go 1.25.10
 
