@@ -10,7 +10,7 @@
 //	err := validate2zh.ValidateStruct(myStruct)
 package validate2zh
 
-import "github.com/ctenni/validate2zh/v1/v2zh"
+import "github.com/ctenni/validate2zh/v2zh"
 
 // ValidateStruct 校验结构体，返回首条中文错误信息。
 // 如果校验通过则返回 nil。
