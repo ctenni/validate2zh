@@ -1,4 +1,4 @@
-module github.com/ctenni/validate2zh/v1
+module github.com/ctenni/validate2zh
 
 go 1.25.10
 
