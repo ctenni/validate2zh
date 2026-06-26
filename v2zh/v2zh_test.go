@@ -1,6 +1,7 @@
 package v2zh
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -1055,28 +1056,25 @@ func TestCombinedValidation(t *testing.T) {
 	 */
 }
 
-/*
-TestValidateStructAll ValidateStructAll 返回所有校验错误
-
-📌 学习目标：理解 ValidateStructAll 与 ValidateStruct 的区别——
-ValidateStruct 只返回首条错误，ValidateStructAll 返回全部错误。
-
-🔍 验证点清单：
-
-- [正常路径] 多字段同时失败时返回全部错误
-*/
 func TestValidateStructAll(t *testing.T) {
 	/*
 	 * 📌 AllPassTest 所有字段为零值时，3 个字段全部校验失败。
-	 * ValidateStructAll 应返回 3 条错误，而 ValidateStruct 只返回 1 条。
+	 * ValidateStructAll 应返回全部错误拼接，而 ValidateStruct 只返回 1 条。
 	 */
 
-	errs := ValidateStructAll(AllPassTest{})
-	if len(errs) != 3 {
-		t.Fatalf("❌ 预期 3 条错误，实际 %d 条", len(errs))
+	err := ValidateStructAll(AllPassTest{})
+	if err == nil {
+		t.Fatal("❌ 预期错误，但返回 nil")
 	}
-	for i, e := range errs {
-		t.Logf("  错误[%d]: %v", i, e)
+	msg := err.Error()
+	t.Logf("[结果] 拼接消息: %s", msg)
+
+	parts := strings.Split(msg, "; ")
+	if len(parts) != 3 {
+		t.Fatalf("❌ 预期 3 条子错误，实际 %d 条", len(parts))
 	}
-	t.Logf("✅ ValidateStructAll 返回全部错误（共 %d 条）", len(errs))
+	for i, p := range parts {
+		t.Logf("  错误[%d]: %s", i, p)
+	}
+	t.Logf("✅ ValidateStructAll 返回全部错误拼接（共 %d 条子错误）", len(parts))
 }

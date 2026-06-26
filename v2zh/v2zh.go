@@ -54,18 +54,19 @@ func ValidateStruct(s any) error {
 	return nil
 }
 
-// ValidateStructAll 通用结构体校验，返回所有中文错误信息
-func ValidateStructAll(s any) []error {
+// ValidateStructAll 校验结构体，返回所有中文错误信息，以 "; " 拼接。
+// 如果校验通过则返回 nil。
+func ValidateStructAll(s any) error {
 	err := validate.Struct(s)
 	if err == nil {
 		return nil
 	}
 	if ves, ok := err.(validator.ValidationErrors); ok {
-		errs := make([]error, len(ves))
+		msgs := make([]string, len(ves))
 		for i, ve := range ves {
-			errs[i] = errors.New(ve.Translate(trans))
+			msgs[i] = ve.Translate(trans)
 		}
-		return errs
+		return errors.New(strings.Join(msgs, "; "))
 	}
-	return []error{err}
+	return err
 }
