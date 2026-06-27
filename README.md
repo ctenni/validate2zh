@@ -13,6 +13,7 @@
 
 A wrapper around [`go-playground/validator`](https://github.com/go-playground/validator)  
 that automatically registers Chinese translations, returning validation errors in **Chinese**.
+Verify multiple fields simultaneously and provide comprehensive error prompts.
 
 > 🇨🇳 中文版请查看 [README.cn.md](README.cn.md)
 
@@ -27,27 +28,41 @@ go get github.com/ctenni/validate2zh@latest
 ## 🚀 Quick Start
 
 ```go
-package main
 
 import (
-    "fmt"
-    "github.com/ctenni/validate2zh/v2zh"
+"testing"
+
+"github.com/ctenni/validate2zh/v2zh"
 )
 
-type User struct {
-    Name  string `validate:"required"`
-    Email string `validate:"required,email"`
-    Age   int    `validate:"required,min=1,max=150"`
+type RequiredTest1 struct {
+Name string `validate:"required"`
 }
 
-func main() {
-    user := User{}
-    err := v2zh.ValidateStruct(user)
-    if err != nil {
-        fmt.Println(err)
-        // Name为必填字段
-    }
+type AllPassTest struct {
+Name  string `validate:"required"`
+Email string `validate:"required,email"`
+Age   int    `validate:"required,min=1,max=150"`
 }
+
+
+func Test_require1(t *testing.T) {
+rt := &RequiredTest1{}
+err := v2zh.ValidateStruct(rt)
+t.Error(err)
+
+err = v2zh.ValidateStructAll(AllPassTest{
+Email: "invalid_email",
+Age:   151,
+})
+t.Error(err)
+}
+
+```
+- 输出
+```markdown
+    v2zh_test.go:22: Name为必填字段
+    v2zh_test.go:28: Name为必填字段; Email必须是一个有效的邮箱; Age必须小于或等于150
 ```
 
 ## 📖 API
