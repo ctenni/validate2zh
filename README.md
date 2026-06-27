@@ -9,12 +9,17 @@
 [![License](https://img.shields.io/github/license/ctenni/validate2zh)](LICENSE)
 [![Tag](https://img.shields.io/github/v/tag/ctenni/validate2zh)](https://github.com/ctenni/validate2zh/tags)
 
-A wrapper around [`go-playground/validator`](https://github.com/go-playground/validator)  
-that automatically registers Chinese translations, returning validation errors in **Chinese**.
-
 </div>
 
 ---
+
+<div class="tab-wrapper">
+<input type="radio" name="lang" id="tab-en" checked>
+<label for="tab-en">🇬🇧 English</label>
+<input type="radio" name="lang" id="tab-zh">
+<label for="tab-zh">🇨🇳 中文</label>
+
+<div class="tab-content tab-en">
 
 ## 📦 Installation
 
@@ -70,7 +75,8 @@ err := v2zh.ValidateStructAll(user)
 
 ## 🏷️ Supported Validation Tags
 
-### Required — 必填校验
+<details>
+<summary>Required — Required family</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -81,8 +87,10 @@ err := v2zh.ValidateStructAll(user)
 | `required_with_all` | Required if all of given fields are present |
 | `required_without` | Required if any of given fields are absent |
 | `required_without_all` | Required if all of given fields are absent |
+</details>
 
-### Excluded — 排除校验
+<details>
+<summary>Excluded — Exclusion family</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -92,8 +100,10 @@ err := v2zh.ValidateStructAll(user)
 | `excluded_with_all` | Excluded if all of given fields are present |
 | `excluded_without` | Excluded if any of given fields are absent |
 | `excluded_without_all` | Excluded if all of given fields are absent |
+</details>
 
-### Comparison — 比较校验
+<details>
+<summary>Comparison — Value comparison</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -101,12 +111,14 @@ err := v2zh.ValidateStructAll(user)
 | `eq_ignore_case` | Equal to given value (case-insensitive) |
 | `ne` | Not equal to given value |
 | `ne_ignore_case` | Not equal to given value (case-insensitive) |
-| `gt` | Greater than given value |
-| `gte` | Greater than or equal to given value |
-| `lt` | Less than given value |
-| `lte` | Less than or equal to given value |
+| `gt` | Greater than |
+| `gte` | Greater than or equal |
+| `lt` | Less than |
+| `lte` | Less than or equal |
+</details>
 
-### Cross-Field — 跨字段比较
+<details>
+<summary>Cross-Field — Cross-field comparison</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -122,8 +134,10 @@ err := v2zh.ValidateStructAll(user)
 | `gtecsfield` | Greater than or equal to another field (case-sensitive) |
 | `ltcsfield` | Less than another field (case-sensitive) |
 | `ltecsfield` | Less than or equal to another field (case-sensitive) |
+</details>
 
-### String — 字符串校验
+<details>
+<summary>String — String content validation</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -142,8 +156,10 @@ err := v2zh.ValidateStructAll(user)
 | `endsnotwith` | Does not end with suffix |
 | `fieldcontains` | Contains value of another field |
 | `fieldexcludes` | Does not contain value of another field |
+</details>
 
-### Character — 字符组成
+<details>
+<summary>Character — Character composition</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -158,52 +174,52 @@ err := v2zh.ValidateStructAll(user)
 | `multibyte` | Multi-byte characters |
 | `lowercase` | Lowercase only |
 | `uppercase` | Uppercase only |
+</details>
 
-### Numeric — 数值校验
+<details>
+<summary>Numeric — Numeric formats</summary>
 
 | Tag | Description |
 |-----|-------------|
 | `number` | Integer string |
 | `numeric` | Integer or float string |
-| `boolean` | Boolean string ("true"/"false") |
+| `boolean` | Boolean string |
 | `hexadecimal` | Hexadecimal string |
 | `hexcolor` | Hex color (#RRGGBB) |
-| `rgb` | RGB color (rgb(r,g,b)) |
-| `rgba` | RGBA color (rgba(r,g,b,a)) |
-| `hsl` | HSL color (hsl(h,s,l)) |
-| `hsla` | HSLA color (hsla(h,s,l,a)) |
+| `rgb` | RGB color |
+| `rgba` | RGBA color |
+| `hsl` | HSL color |
+| `hsla` | HSLA color |
 | `cmyk` | CMYK color |
-| `iscolor` | Any color format (alias for hexcolor\|rgb\|rgba\|hsl\|hsla\|cmyk) |
+| `iscolor` | Any color format (alias) |
+</details>
 
-### Network — 网络格式
+<details>
+<summary>Network — Network formats</summary>
 
 | Tag | Description |
 |-----|-------------|
 | `ip` | IP address (v4 or v6) |
 | `ipv4` | IPv4 address |
 | `ipv6` | IPv6 address |
-| `cidr` | CIDR notation (v4 or v6) |
+| `cidr` | CIDR notation |
 | `cidrv4` | CIDR v4 |
 | `cidrv6` | CIDR v6 |
 | `mac` | MAC address |
 | `hostname` | Hostname |
 | `hostname_rfc1123` | RFC 1123 hostname |
 | `hostname_port` | Hostname:port |
-| `fqdn` | Fully qualified domain name |
+| `fqdn` | FQDN |
 | `port` | Port number |
-| `tcp4_addr` | TCP4 address |
-| `tcp6_addr` | TCP6 address |
-| `tcp_addr` | TCP address |
-| `udp4_addr` | UDP4 address |
-| `udp6_addr` | UDP6 address |
-| `udp_addr` | UDP address |
-| `ip4_addr` | IP4 address |
-| `ip6_addr` | IP6 address |
-| `ip_addr` | IP address |
+| `tcp4_addr` / `tcp6_addr` / `tcp_addr` | TCP address |
+| `udp4_addr` / `udp6_addr` / `udp_addr` | UDP address |
+| `ip4_addr` / `ip6_addr` / `ip_addr` | IP address |
 | `unix_addr` | Unix address |
 | `uds_exists` | Unix domain socket exists |
+</details>
 
-### Format — 格式校验
+<details>
+<summary>Format — Format validation</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -213,7 +229,7 @@ err := v2zh.ValidateStructAll(user)
 | `https_url` | HTTPS URL |
 | `uri` | URI |
 | `origin` | Origin |
-| `urn_rfc2141` | URN (RFC 2141) |
+| `urn_rfc2141` | URN |
 | `base32` | Base32 string |
 | `base64` | Base64 string |
 | `base64url` | Base64 URL-safe string |
@@ -224,45 +240,37 @@ err := v2zh.ValidateStructAll(user)
 | `html` | HTML string |
 | `html_encoded` | HTML-encoded string |
 | `url_encoded` | URL-encoded string |
-| `datetime` | Datetime matching given format |
+| `datetime` | Datetime with given format |
+</details>
 
-### Identifier — 标识符校验
+<details>
+<summary>Identifier — UUID / ISBN / SSN etc.</summary>
 
 | Tag | Description |
 |-----|-------------|
-| `uuid` | UUID |
-| `uuid3` | UUID v3 |
-| `uuid4` | UUID v4 |
-| `uuid5` | UUID v5 |
-| `uuid_rfc4122` | UUID RFC 4122 |
-| `uuid3_rfc4122` | UUID v3 RFC 4122 |
-| `uuid4_rfc4122` | UUID v4 RFC 4122 |
-| `uuid5_rfc4122` | UUID v5 RFC 4122 |
+| `uuid` / `uuid3` / `uuid4` / `uuid5` | UUID |
+| `uuid_rfc4122` / `uuid3_rfc4122` / `uuid4_rfc4122` / `uuid5_rfc4122` | UUID RFC 4122 |
 | `ulid` | ULID |
-| `isbn` | ISBN |
-| `isbn10` | ISBN-10 |
-| `isbn13` | ISBN-13 |
+| `isbn` / `isbn10` / `isbn13` | ISBN |
 | `issn` | ISSN |
 | `ssn` | SSN |
-| `ein` | EIN (Employer Identification Number) |
+| `ein` | EIN |
 | `cve` | CVE identifier |
+</details>
 
-### Hash — 哈希校验
+<details>
+<summary>Hash — Hash algorithm validation</summary>
 
 | Tag | Description |
 |-----|-------------|
-| `md4` | MD4 hash |
-| `md5` | MD5 hash |
-| `sha256` | SHA-256 hash |
-| `sha384` | SHA-384 hash |
-| `sha512` | SHA-512 hash |
-| `ripemd128` | RIPEMD-128 hash |
-| `ripemd160` | RIPEMD-160 hash |
-| `tiger128` | Tiger-128 hash |
-| `tiger160` | Tiger-160 hash |
-| `tiger192` | Tiger-192 hash |
+| `md4` / `md5` | MD |
+| `sha256` / `sha384` / `sha512` | SHA |
+| `ripemd128` / `ripemd160` | RIPEMD |
+| `tiger128` / `tiger160` / `tiger192` | TIGER |
+</details>
 
-### Enum — 枚举校验
+<details>
+<summary>Enum — Enum validation</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -270,48 +278,48 @@ err := v2zh.ValidateStructAll(user)
 | `oneofci` 🔥 | One of given values (case-insensitive, custom) |
 | `noneof` | None of given values (case-sensitive) |
 | `noneofci` | None of given values (case-insensitive) |
+</details>
 
-### Location — 地理位置
+<details>
+<summary>Location — Geo & timezone</summary>
 
 | Tag | Description |
 |-----|-------------|
 | `latitude` | Latitude coordinate |
 | `longitude` | Longitude coordinate |
 | `timezone` | Timezone string |
+</details>
 
-### Country / Currency — 国家与货币
+<details>
+<summary>Country / Currency — ISO standards</summary>
 
 | Tag | Description |
 |-----|-------------|
-| `country_code` | Country code (alias for iso3166_1_alpha2\|iso3166_1_alpha3\|iso3166_1_alpha_numeric) |
-| `iso3166_1_alpha2` | ISO 3166-1 alpha-2 |
-| `iso3166_1_alpha3` | ISO 3166-1 alpha-3 |
-| `iso3166_1_alpha_numeric` | ISO 3166-1 numeric |
+| `country_code` | Country code (alias) |
+| `iso3166_1_alpha2` / `iso3166_1_alpha3` / `iso3166_1_alpha_numeric` | ISO 3166-1 |
 | `iso3166_2` | ISO 3166-2 |
-| `iso4217` | Currency code (ISO 4217) |
-| `iso4217_numeric` | Currency numeric code (ISO 4217) |
-| `postcode_iso3166_alpha2` | Postal code by country |
-| `postcode_iso3166_alpha2_field` | Postal code by country from field |
-| `bcp47_language_tag` | BCP 47 language tag |
-| `bcp47_strict_language_tag` | BCP 47 strict language tag |
+| `iso4217` / `iso4217_numeric` | Currency |
+| `postcode_iso3166_alpha2` / `postcode_iso3166_alpha2_field` | Postal code |
+| `bcp47_language_tag` / `bcp47_strict_language_tag` | Language tag |
 | `eu_country_code` | EU country code (alias) |
-| `bic_iso_9362_2014` | BIC / SWIFT code |
-| `bic` | BIC code (alias) |
+| `bic_iso_9362_2014` / `bic` | BIC / SWIFT |
+</details>
 
-### Crypto / Finance — 加密与金融
+<details>
+<summary>Crypto / Finance — Blockchain & payment</summary>
 
 | Tag | Description |
 |-----|-------------|
-| `eth_addr` | Ethereum address |
-| `eth_addr_checksum` | Ethereum address (checksummed) |
-| `btc_addr` | Bitcoin address |
-| `btc_addr_bech32` | Bitcoin Bech32 address |
-| `credit_card` | Credit card number (Luhn) |
+| `eth_addr` / `eth_addr_checksum` | Ethereum address |
+| `btc_addr` / `btc_addr_bech32` | Bitcoin address |
+| `credit_card` | Credit card (Luhn) |
 | `luhn_checksum` | Luhn checksum |
-| `e164` | E.164 phone number |
+| `e164` | E.164 phone |
 | `phone` | Phone number |
+</details>
 
-### File / Directory — 文件与目录
+<details>
+<summary>File — File & directory</summary>
 
 | Tag | Description |
 |-----|-------------|
@@ -320,24 +328,25 @@ err := v2zh.ValidateStructAll(user)
 | `dir` | Directory path |
 | `dirpath` | Directory path (valid format) |
 | `image` | Image file |
+| `mimetype` | MIME type |
+</details>
 
-### Other — 其他
+<details>
+<summary>Other — Miscellaneous</summary>
 
 | Tag | Description |
 |-----|-------------|
-| `mimetype` | MIME type |
 | `unique` | Unique values in slice/map |
 | `semver` | Semantic version |
 | `cron` | Cron expression |
-| `mongodb` | MongoDB ObjectID |
-| `mongodb_connection_string` | MongoDB connection string |
-| `dns_rfc1035_label` | DNS label (RFC 1035) |
+| `mongodb` / `mongodb_connection_string` | MongoDB |
+| `dns_rfc1035_label` | DNS label |
 | `spicedb` | SpiceDB |
 | `isdefault` | Is default value |
-| `skip_unless` | Skip validation unless condition met |
-| `validateFn` | Custom validation function |
+| `skip_unless` | Skip unless condition met |
+</details>
 
-> `oneofci` is a custom validator that supports case-insensitive enum matching.
+> `oneofci` is a custom validator — supports case-insensitive enum matching.
 
 ## 🧪 Testing
 
@@ -349,20 +358,9 @@ go test -v ./v2zh/...
 
 [MIT](LICENSE)
 
----
-
-<div align="center">
-
-# validate2zh
-
-**Go 结构体校验 · 中文错误提示**
-
-基于 [`go-playground/validator`](https://github.com/go-playground/validator) 封装，  
-自动注册中文翻译器，让校验错误信息直接返回**中文友好提示**。
-
 </div>
 
----
+<div class="tab-content tab-zh">
 
 ## 📦 安装
 
@@ -418,7 +416,8 @@ err := v2zh.ValidateStructAll(user)
 
 ## 🏷️ 支持的校验规则
 
-### required 家族 — 必填校验
+<details>
+<summary>required 家族 — 必填校验</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -429,8 +428,10 @@ err := v2zh.ValidateStructAll(user)
 | `required_with_all` | 当所有指定字段都存在时必填 |
 | `required_without` | 当任意指定字段不存在时必填 |
 | `required_without_all` | 当所有指定字段都不存在时必填 |
+</details>
 
-### excluded 家族 — 排除校验
+<details>
+<summary>excluded 家族 — 排除校验</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -440,8 +441,10 @@ err := v2zh.ValidateStructAll(user)
 | `excluded_with_all` | 当所有指定字段都存在时排除 |
 | `excluded_without` | 当任意指定字段不存在时排除 |
 | `excluded_without_all` | 当所有指定字段都不存在时排除 |
+</details>
 
-### 比较校验
+<details>
+<summary>比较校验</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -449,12 +452,14 @@ err := v2zh.ValidateStructAll(user)
 | `eq_ignore_case` | 等于指定值（忽略大小写） |
 | `ne` | 不等于指定值 |
 | `ne_ignore_case` | 不等于指定值（忽略大小写） |
-| `gt` | 大于指定值 |
-| `gte` | 大于等于指定值 |
-| `lt` | 小于指定值 |
-| `lte` | 小于等于指定值 |
+| `gt` | 大于 |
+| `gte` | 大于等于 |
+| `lt` | 小于 |
+| `lte` | 小于等于 |
+</details>
 
-### 跨字段比较
+<details>
+<summary>跨字段比较</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -470,8 +475,10 @@ err := v2zh.ValidateStructAll(user)
 | `gtecsfield` | 大于等于另一个字段（大小写敏感） |
 | `ltcsfield` | 小于另一个字段（大小写敏感） |
 | `ltecsfield` | 小于等于另一个字段（大小写敏感） |
+</details>
 
-### 字符串校验
+<details>
+<summary>字符串校验</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -490,8 +497,10 @@ err := v2zh.ValidateStructAll(user)
 | `endsnotwith` | 不以指定后缀结尾 |
 | `fieldcontains` | 包含另一个字段的值 |
 | `fieldexcludes` | 不包含另一个字段的值 |
+</details>
 
-### 字符组成
+<details>
+<summary>字符组成</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -506,31 +515,35 @@ err := v2zh.ValidateStructAll(user)
 | `multibyte` | 多字节字符 |
 | `lowercase` | 仅小写 |
 | `uppercase` | 仅大写 |
+</details>
 
-### 数值校验
+<details>
+<summary>数值校验</summary>
 
 | 标签 | 说明 |
 |------|------|
 | `number` | 整数字符串 |
 | `numeric` | 整数或浮点数字符串 |
-| `boolean` | 布尔字符串（"true"/"false"） |
+| `boolean` | 布尔字符串 |
 | `hexadecimal` | 十六进制字符串 |
-| `hexcolor` | 十六进制颜色（#RRGGBB） |
+| `hexcolor` | 十六进制颜色 |
 | `rgb` | RGB 颜色 |
 | `rgba` | RGBA 颜色 |
 | `hsl` | HSL 颜色 |
 | `hsla` | HSLA 颜色 |
 | `cmyk` | CMYK 颜色 |
-| `iscolor` | 任意颜色格式（hexcolor\|rgb\|rgba\|hsl\|hsla\|cmyk） |
+| `iscolor` | 任意颜色格式（别名） |
+</details>
 
-### 网络格式
+<details>
+<summary>网络格式</summary>
 
 | 标签 | 说明 |
 |------|------|
 | `ip` | IP 地址（v4 或 v6） |
 | `ipv4` | IPv4 地址 |
 | `ipv6` | IPv6 地址 |
-| `cidr` | CIDR（v4 或 v6） |
+| `cidr` | CIDR 表示法 |
 | `cidrv4` | CIDR v4 |
 | `cidrv6` | CIDR v6 |
 | `mac` | MAC 地址 |
@@ -539,19 +552,15 @@ err := v2zh.ValidateStructAll(user)
 | `hostname_port` | 主机名:端口 |
 | `fqdn` | 完整域名 |
 | `port` | 端口号 |
-| `tcp4_addr` | TCP4 地址 |
-| `tcp6_addr` | TCP6 地址 |
-| `tcp_addr` | TCP 地址 |
-| `udp4_addr` | UDP4 地址 |
-| `udp6_addr` | UDP6 地址 |
-| `udp_addr` | UDP 地址 |
-| `ip4_addr` | IP4 地址 |
-| `ip6_addr` | IP6 地址 |
-| `ip_addr` | IP 地址 |
+| `tcp4_addr` / `tcp6_addr` / `tcp_addr` | TCP 地址 |
+| `udp4_addr` / `udp6_addr` / `udp_addr` | UDP 地址 |
+| `ip4_addr` / `ip6_addr` / `ip_addr` | IP 地址 |
 | `unix_addr` | Unix 地址 |
 | `uds_exists` | Unix 域套接字存在 |
+</details>
 
-### 格式校验
+<details>
+<summary>格式校验</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -561,7 +570,7 @@ err := v2zh.ValidateStructAll(user)
 | `https_url` | HTTPS URL |
 | `uri` | URI |
 | `origin` | Origin |
-| `urn_rfc2141` | URN（RFC 2141） |
+| `urn_rfc2141` | URN |
 | `base32` | Base32 字符串 |
 | `base64` | Base64 字符串 |
 | `base64url` | Base64 URL 安全字符串 |
@@ -573,44 +582,36 @@ err := v2zh.ValidateStructAll(user)
 | `html_encoded` | HTML 编码字符串 |
 | `url_encoded` | URL 编码字符串 |
 | `datetime` | 日期时间格式校验 |
+</details>
 
-### 标识符校验
+<details>
+<summary>标识符校验</summary>
 
 | 标签 | 说明 |
 |------|------|
-| `uuid` | UUID |
-| `uuid3` | UUID v3 |
-| `uuid4` | UUID v4 |
-| `uuid5` | UUID v5 |
-| `uuid_rfc4122` | UUID RFC 4122 |
-| `uuid3_rfc4122` | UUID v3 RFC 4122 |
-| `uuid4_rfc4122` | UUID v4 RFC 4122 |
-| `uuid5_rfc4122` | UUID v5 RFC 4122 |
+| `uuid` / `uuid3` / `uuid4` / `uuid5` | UUID |
+| `uuid_rfc4122` / `uuid3_rfc4122` / `uuid4_rfc4122` / `uuid5_rfc4122` | UUID RFC 4122 |
 | `ulid` | ULID |
-| `isbn` | ISBN |
-| `isbn10` | ISBN-10 |
-| `isbn13` | ISBN-13 |
+| `isbn` / `isbn10` / `isbn13` | ISBN |
 | `issn` | ISSN |
 | `ssn` | 社会安全号码 |
 | `ein` | 雇主识别号 |
 | `cve` | CVE 标识符 |
+</details>
 
-### 哈希校验
+<details>
+<summary>哈希校验</summary>
 
 | 标签 | 说明 |
 |------|------|
-| `md4` | MD4 哈希 |
-| `md5` | MD5 哈希 |
-| `sha256` | SHA-256 哈希 |
-| `sha384` | SHA-384 哈希 |
-| `sha512` | SHA-512 哈希 |
-| `ripemd128` | RIPEMD-128 哈希 |
-| `ripemd160` | RIPEMD-160 哈希 |
-| `tiger128` | Tiger-128 哈希 |
-| `tiger160` | Tiger-160 哈希 |
-| `tiger192` | Tiger-192 哈希 |
+| `md4` / `md5` | MD |
+| `sha256` / `sha384` / `sha512` | SHA |
+| `ripemd128` / `ripemd160` | RIPEMD |
+| `tiger128` / `tiger160` / `tiger192` | TIGER |
+</details>
 
-### 枚举校验
+<details>
+<summary>枚举校验</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -618,48 +619,48 @@ err := v2zh.ValidateStructAll(user)
 | `oneofci` 🔥 | 枚举值之一（忽略大小写，自定义） |
 | `noneof` | 不是枚举值之一（大小写敏感） |
 | `noneofci` | 不是枚举值之一（忽略大小写） |
+</details>
 
-### 地理位置
+<details>
+<summary>地理位置</summary>
 
 | 标签 | 说明 |
 |------|------|
 | `latitude` | 纬度 |
 | `longitude` | 经度 |
 | `timezone` | 时区 |
+</details>
 
-### 国家与货币
+<details>
+<summary>国家与货币</summary>
 
 | 标签 | 说明 |
 |------|------|
 | `country_code` | 国家代码（别名） |
-| `iso3166_1_alpha2` | ISO 3166-1 alpha-2 |
-| `iso3166_1_alpha3` | ISO 3166-1 alpha-3 |
-| `iso3166_1_alpha_numeric` | ISO 3166-1 数字代码 |
+| `iso3166_1_alpha2` / `iso3166_1_alpha3` / `iso3166_1_alpha_numeric` | ISO 3166-1 |
 | `iso3166_2` | ISO 3166-2 |
-| `iso4217` | 货币代码（ISO 4217） |
-| `iso4217_numeric` | 货币数字代码 |
-| `postcode_iso3166_alpha2` | 邮政编码（按国家） |
-| `postcode_iso3166_alpha2_field` | 邮政编码（从字段读取国家） |
-| `bcp47_language_tag` | BCP 47 语言标签 |
-| `bcp47_strict_language_tag` | BCP 47 严格语言标签 |
+| `iso4217` / `iso4217_numeric` | 货币代码 |
+| `postcode_iso3166_alpha2` / `postcode_iso3166_alpha2_field` | 邮政编码 |
+| `bcp47_language_tag` / `bcp47_strict_language_tag` | 语言标签 |
 | `eu_country_code` | 欧盟国家代码（别名） |
-| `bic_iso_9362_2014` | BIC/SWIFT 代码 |
-| `bic` | BIC 代码（别名） |
+| `bic_iso_9362_2014` / `bic` | BIC / SWIFT 代码 |
+</details>
 
-### 加密与金融
+<details>
+<summary>加密与金融</summary>
 
 | 标签 | 说明 |
 |------|------|
-| `eth_addr` | 以太坊地址 |
-| `eth_addr_checksum` | 以太坊地址（校验和） |
-| `btc_addr` | 比特币地址 |
-| `btc_addr_bech32` | 比特币 Bech32 地址 |
-| `credit_card` | 信用卡号（Luhn 算法） |
+| `eth_addr` / `eth_addr_checksum` | 以太坊地址 |
+| `btc_addr` / `btc_addr_bech32` | 比特币地址 |
+| `credit_card` | 信用卡号（Luhn） |
 | `luhn_checksum` | Luhn 校验和 |
-| `e164` | E.164 电话号码 |
+| `e164` | E.164 电话 |
 | `phone` | 电话号码 |
+</details>
 
-### 文件与目录
+<details>
+<summary>文件与目录</summary>
 
 | 标签 | 说明 |
 |------|------|
@@ -668,21 +669,23 @@ err := v2zh.ValidateStructAll(user)
 | `dir` | 目录路径 |
 | `dirpath` | 目录路径格式 |
 | `image` | 图片文件 |
+| `mimetype` | MIME 类型 |
+</details>
 
-### 其他
+<details>
+<summary>其他</summary>
 
 | 标签 | 说明 |
 |------|------|
-| `mimetype` | MIME 类型 |
 | `unique` | 切片/Map 中唯一值 |
 | `semver` | 语义化版本 |
 | `cron` | Cron 表达式 |
-| `mongodb` | MongoDB ObjectID |
-| `mongodb_connection_string` | MongoDB 连接字符串 |
-| `dns_rfc1035_label` | DNS 标签（RFC 1035） |
+| `mongodb` / `mongodb_connection_string` | MongoDB |
+| `dns_rfc1035_label` | DNS 标签 |
 | `spicedb` | SpiceDB |
 | `isdefault` | 是否为零值 |
 | `skip_unless` | 条件不满足时跳过校验 |
+</details>
 
 > `oneofci` 是自定义校验器，支持大小写不敏感的枚举匹配。
 
@@ -695,3 +698,35 @@ go test -v ./v2zh/...
 ## 📄 License
 
 [MIT](LICENSE)
+
+</div>
+
+</div>
+
+<style>
+.tab-wrapper { margin: 0; }
+.tab-wrapper input[type="radio"] { display: none; }
+.tab-wrapper label {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid #d0d7de;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    background: #f6f8fa;
+    font-size: 14px;
+    font-weight: 500;
+}
+.tab-wrapper input#tab-en:checked ~ label[for="tab-en"],
+.tab-wrapper input#tab-zh:checked ~ label[for="tab-zh"] {
+    background: #fff;
+    border-bottom: 2px solid #0969da;
+    color: #0969da;
+}
+.tab-content { display: none; }
+.tab-wrapper input#tab-en:checked ~ .tab-en,
+.tab-wrapper input#tab-zh:checked ~ .tab-zh {
+    display: block;
+}
+</style>
