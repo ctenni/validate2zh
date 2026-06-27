@@ -12,7 +12,7 @@
 </div>
 
 A wrapper around [`go-playground/validator`](https://github.com/go-playground/validator)  
-that automatically registers Chinese translations, returning validation errors in **Chinese**.
+that automatically registers Chinese translations, returning validation errors in **Chinese**.  
 Verify multiple fields simultaneously and provide comprehensive error prompts.
 
 > 🇨🇳 中文版请查看 [README.cn.md](README.cn.md)

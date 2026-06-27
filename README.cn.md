@@ -12,7 +12,7 @@
 </div>
 
 基于 [`go-playground/validator`](https://github.com/go-playground/validator) 封装，  
-自动注册中文翻译器，让校验错误信息直接返回**中文友好提示**。
+自动注册中文翻译器，让校验错误信息直接返回**中文友好提示**。  
 多个字段同时校验，给出全面的错误提示。
 
 > 🇬🇧 English version: [README.md](README.md)
